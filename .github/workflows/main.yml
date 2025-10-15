@@ -9,26 +9,34 @@ jobs:
   train-and-evaluate:
     runs-on: ubuntu-latest
 
+    env:
+      # MLflow stocke les runs dans le workspace du runner (droit d'écriture OK)
+      MLFLOW_TRACKING_URI: file:${{ github.workspace }}/mlruns
+
     steps:
-      # Étape 1 : Récupérer le code du dépôt
+      # 1) Récupérer le code
       - name: Checkout repository code
         uses: actions/checkout@v4
 
-      # Étape 2 : Configurer l'environnement Python
+      # 2) Python + cache pip
       - name: Set up Python 3.9
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: "3.9"
+          cache: "pip"
 
-      # Étape 3 : Installer les dépendances
+      # 3) Dépendances (+ ressources NLTK)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          # Télécharger les packages NLTK nécessaires pour le prétraitement
           python -m nltk.downloader stopwords punkt wordnet
 
-      # Étape 4 : Exécuter le pipeline de données et de machine learning
+      # 4) Créer le dossier MLflow (au cas où)
+      - name: Prepare mlruns dir
+        run: mkdir -p mlruns
+
+      # 5) Exécuter le pipeline
       - name: Run Data and ML Pipeline
         run: |
           python src/load_data.py
@@ -36,12 +44,10 @@ jobs:
           python src/train.py
           python src/evaluate.py
 
-      # Étape 5 : Sauvegarder les résultats MLflow comme un artefact
+      # 6) Uploader les résultats MLflow
       - name: Upload MLflow results
         uses: actions/upload-artifact@v4
         with:
-          # Nom de l'artefact qui apparaîtra sur GitHub
           name: mlflow-results
-          # Chemin du répertoire à sauvegarder
           path: mlruns/
           if-no-files-found: warn
