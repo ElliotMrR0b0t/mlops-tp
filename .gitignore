@@ -1,1 +1,10 @@
 venv/
+venv/
+__pycache__/
+data/
+models/
+mlruns/
+*.zip
+*.csv
+*.joblib
+*.png
