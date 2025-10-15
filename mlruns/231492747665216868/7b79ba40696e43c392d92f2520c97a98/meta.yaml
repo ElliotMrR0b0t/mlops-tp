@@ -1,0 +1,15 @@
+artifact_uri: file:///home/elliotp/mlops-tp/mlruns/231492747665216868/7b79ba40696e43c392d92f2520c97a98/artifacts
+end_time: 1760516776151
+entry_point_name: ''
+experiment_id: '231492747665216868'
+lifecycle_stage: active
+run_id: 7b79ba40696e43c392d92f2520c97a98
+run_name: LogisticRegression
+run_uuid: 7b79ba40696e43c392d92f2520c97a98
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760516771407
+status: 3
+tags: []
+user_id: elliotp

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/elliotp/mlops-tp/mlruns/231492747665216868/b47c0a41206d4a31a74777256dd0709b/artifacts
+end_time: 1760516779075
+entry_point_name: ''
+experiment_id: '231492747665216868'
+lifecycle_stage: active
+run_id: b47c0a41206d4a31a74777256dd0709b
+run_name: NaiveBayes
+run_uuid: b47c0a41206d4a31a74777256dd0709b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1760516776154
+status: 3
+tags: []
+user_id: elliotp
